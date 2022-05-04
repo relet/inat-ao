@@ -91,5 +91,4 @@ while True:
       #ao_close()
       #sys.exit(1)
 
-  input("--more--")
   page += 1
