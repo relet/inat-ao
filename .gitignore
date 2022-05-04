@@ -1,3 +1,4 @@
 settings.json
 __pycache__/
-transferred.json*
+transferred.json
+transferred.json.bak

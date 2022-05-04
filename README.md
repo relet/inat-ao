@@ -1,4 +1,4 @@
-# inat-convert
+# inat-ao
 
 A simple, somewhat stupid converter from inaturalist observations into artsobservasjoner using Selenium.
 
