@@ -18,11 +18,17 @@ page=1
 PHOTOS=True
 QUALITY='research'
 
+if len(sys.argv)>1:
+  page=int(sys.argv[1])
+
 with open("settings.json","r") as fd:
   settings = json.load(fd)
 
 with open("transferred.json","r") as fd:
   transferred = json.load(fd)
+
+with open('translate.json','r') as fd:
+  translate = json.load(fd)
 
 while True:
   observations = get_observations(user_id=settings.get('inat_user'), hrank='species', quality_grade=QUALITY, page=page)
@@ -40,6 +46,10 @@ while True:
         continue
 
     taxon = obs['taxon']['name']
+    #AO isn't always up to date with inat taxon changes
+    if taxon in translate:
+       taxon = translate[taxon]
+
     latitude = obs['location'][0]
     longitude = obs['location'][1]
     images = []

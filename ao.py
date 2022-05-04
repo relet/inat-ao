@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
-LOAD_TIME=0.8
-REFRESH_TIME=0.1
+LOAD_TIME=1.0
+REFRESH_TIME=0.2
 HEADLESS=False
 
 ERR_NOT_IN_NORWAY=1
@@ -47,9 +47,6 @@ def get_taxons_for_date(date):
   print(f"Fetching {date}")
   driver.get(f'https://artsobservasjoner.no/FieldDiaryByDate/{date}')
 
-  with open(f'taxons.page', 'w') as f:
-      f.write(driver.page_source)
-
   time.sleep(LOAD_TIME)
 
   entries=[]
@@ -87,14 +84,10 @@ def submit_sighting(data):
 
   print(f"Place: {placename}")
 
-  # tbd: data format
   print(f"Sumbitting entry: {taxon} {lat} {lon}")
   driver.get(f'https://artsobservasjoner.no/SubmitSighting/Report')
 
   time.sleep(LOAD_TIME)
-
-  #with open(f'submit.form', 'w') as f:
-  #  f.write(driver.page_source)
 
   fields = driver.find_elements_by_xpath('//a')
   for f in fields:
@@ -186,12 +179,9 @@ def submit_sighting(data):
           time.sleep(LOAD_TIME)
           break
 
-  with open(f'submitted.page', 'w') as f:
-      f.write(driver.page_source)
   return True
 
 def ao_close():
   driver.close()
 
 logon()
-#get_taxons_for_date('2022-05-01')
