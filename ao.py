@@ -61,7 +61,6 @@ def get_taxons_for_date(date):
 
 def nominatim(lat, lon):
   place = requests.get(f'https://nominatim.openstreetmap.org/reverse?format=jsonv2&lon={lon}&lat={lat}')
-  #print(place)
   data = place.json()
   return data.get('display_name','Ukjent')
 
@@ -157,7 +156,6 @@ def submit_sighting(data):
             if f.get_attribute('name') == 'UploadImageViewModel.Image':
               path = os.getcwd() + "/photo.jpg"
               f.send_keys(path)
-              print(path)
 
           fields = driver.find_elements_by_xpath('//input')
           for f in fields:
