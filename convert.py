@@ -102,3 +102,4 @@ while True:
       #sys.exit(1)
 
   page += 1
+  print("Fetching page {} from iNaturalist.".format(page))
