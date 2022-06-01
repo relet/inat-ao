@@ -11,6 +11,7 @@ import os
 import re
 import requests
 from selenium import webdriver
+from selenium.webdriver.support import ui
 from selenium.webdriver.common.keys import Keys
 import sys
 import time
@@ -98,7 +99,7 @@ def submit_sighting(data):
   fields = driver.find_elements_by_xpath('//select')
   for f in fields:
       if f.get_attribute('id') == 'SiteViewModel_NewSite_Site_AccuracyDisplay':
-        webdriver.support.ui.Select(f).select_by_index(3)
+        ui.Select(f).select_by_index(3)
 
   fields = driver.find_elements_by_xpath('//input')
   for f in fields:
